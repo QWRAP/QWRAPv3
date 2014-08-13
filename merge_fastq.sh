@@ -94,6 +94,12 @@ do
 
 done <${Paired_Filelist}
 
+#Store all information in log file "QC.log"
+echo "Time: `date`" >> QC.log
+echo -e "This QC steps code was run as :" >> QC.log
+echo -e "merge_fastq.sh $Paired_Filelist $FWD_TRIM $REV_TRIM $USEARCH_MAXDIFF $USEARCH_MINOVERLAP" >> QC.log
+echo -e "-----------------------------------\n" >> QC.log
+
 echo -e "\n******************** DONE **************************************"
 echo -e "\nAll files processed\nThe merged fastq files are stored in folder ${MERGED_FASTQ} &"
 echo -e "The fasta files are stored in current directory\n"

@@ -125,6 +125,22 @@ echo 'top_taxa_org.sh'>>script.sh
 echo -e "">>script.sh
 echo -e 'echo "Program completed successfully..."'>>script.sh
 
+#Store all qiime and other tools info in "config.log"
+echo "Time: `date`" > config.log
+echo -e "-----------------------------------" >> config.log
+OUTPUT=$(fastqc -v 2>&1)
+echo "FASTQC version is $OUTPUT" >> config.log
+OUTPUT=$(fastx_trimmer -h | grep "Part of FASTX Toolkit" 2>&1)
+echo "FASTX version is $OUTPUT" >> config.log 
+OUTPUT=$(usearch61 | grep "usearch"  2>&1)
+echo "usearch61 version is $OUTPUT" >> config.log
+OUTPUT=$(usearch | grep "usearch"  2>&1)
+echo "usearch version is $OUTPUT" >> config.log
+echo -e "\n\nThe QIIME configuration is below (output of command \"print_qiime_config.py\")" >> config.log
+print_qiime_config.py >> config.log
+echo -e "-----------------------------------\n" >> config.log
+
+
 echo -e "A script file named \"script.sh\" is generated"
  
 echo -e "\nProgram completed successfully...\n"
