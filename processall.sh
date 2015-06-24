@@ -44,7 +44,7 @@ for i in *
    quality_check_before.sh ../FORWARD/ ../REVERSE/
    merge_reads_F_R.sh ../FORWARD/ ../REVERSE/
    prepare_merge_fastq.sh TEMP/
-   merge_fastq.sh Paired_Filelist.txt 250 250 15 200
+   merge_fastq.sh Paired_Filelist.txt 250 250 25 200
    quality_filter_single.sh MERGED_FASTQ 250 80 20
    quality_check_filterdata.sh filtered_fastq
    rm -r TEMP/
