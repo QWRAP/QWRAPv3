@@ -16,8 +16,8 @@ then execute the following command ```export PATH=${PATH}:/home/username/QWRAP``
 USAGE AND EXAMPLE
 -----
 * How to use QWRAP : The detailed instructions are present in word document file "QWRAP-Readme.docx"
-* Example raw data : An example raw dataset is provided as "example_results.tar.gz"
-* Example results : The results generated after processing using QWRAP is provided as "example_results.tar.gz"
-* Browse Live : A copy of example dataset ia also available for live browing at https://dl.dropboxusercontent.com/u/428435/QWRAP/ANALYSIS/microbiome_report.html. You can also download the raw data here https://dl.dropboxusercontent.com/u/428435/QWRAP/example_rawdata.tar.gz and the results folder https://dl.dropboxusercontent.com/u/428435/QWRAP/example_results.tar.gz as a archive.
+* Example raw data : An example single end raw dataset is provided as "rawdata_se.tar.gz"
+* Example results : The results generated after processing using QWRAPv3 is provided as "results_se.tar.gz"
+* Browse Live : A copy of example dataset ia also available for live browing at https://dl.dropboxusercontent.com/u/428435/QWRAP/ANALYSIS/microbiome_report.html.
 
 # QWRAPv3
