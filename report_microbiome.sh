@@ -1204,13 +1204,13 @@ in tabular format</span> [The files are tab delimited and can be viewed using ex
 <span style="text-decoration: underline;"><span
  style="font-weight: bold;"></span></span><br>
 <ol>
-  <li><a href="../beta_div_matrices/bray_curtis_otu_table_even.txt">Bray-curtis
+  <li><a href="../beta_div_matrices/bray_curtis_otu_table_fil.txt">Bray-curtis
 diversity</a></li>
   <li><a
- href="../beta_div_matrices/unweighted_unifrac_otu_table_even.txt">Unweighted
+ href="../beta_div_matrices/unweighted_unifrac_otu_table_fil.txt">Unweighted
 Unifrac</a></li>
   <li><a
- href="../beta_div_matrices/weighted_unifrac_otu_table_even.txt">Weighted
+ href="../beta_div_matrices/weighted_unifrac_otu_table_fil.txt">Weighted
 Unifrac</a></li>
 </ol>
 <br style="color: rgb(153, 0, 0);"></br></br>

@@ -92,7 +92,8 @@ echo -e "">>script.sh
 echo '#----------- OTU table statistics ORG-------------------------------'>>script.sh
 echo -e 'echo "Time: `date`"' >>script.sh
 echo -e 'echo "Running: OTU table statistics"'>>script.sh
-echo 'print_biom_table_summary.py -i otu_table_org.biom > otu_table_org.stats.txt'>>script.sh
+#echo 'print_biom_table_summary.py -i otu_table_org.biom > otu_table_org.stats.txt'>>script.sh
+echo 'biom summarize-table -i otu_table_org.biom -o otu_table_org.stats.txt'>>script.sh
 echo -e "">>script.sh
 
 echo '#------- Summarizing taxa information(ORG)-------'>>script.sh
@@ -105,7 +106,8 @@ echo -e "">>script.sh
 echo '#------------------ Convert BIOM file to TXT file----------------'>>script.sh
 echo -e 'echo "Time: `date`"' >>script.sh
 echo -e 'echo "Running: Converting BIOM file to TXT file"'>>script.sh
-echo 'convert_biom.py -i otu_table_org.biom -o otu_table_org.txt -b --header_key taxonomy --output_metadata_id "ConsensusLineage"'>>script.sh
+#echo 'convert_biom.py -i otu_table_org.biom -o otu_table_org.txt -b --header_key taxonomy --output_metadata_id "ConsensusLineage"'>>script.sh
+echo -e 'biom convert -i otu_table_org.biom -o otu_table_org.txt -b --header-key taxonomy --output-metadata-id "ConsensusLineage"'>>script.sh
 echo -e "">>script.sh
 
 
@@ -122,6 +124,22 @@ echo 'top_otu_org.sh'>>script.sh
 echo 'top_taxa_org.sh'>>script.sh
 echo -e "">>script.sh
 echo -e 'echo "Program completed successfully..."'>>script.sh
+
+#Store all qiime and other tools info in "config.log"
+echo "Time: `date`" > config.log
+echo -e "-----------------------------------" >> config.log
+OUTPUT=$(fastqc -v 2>&1)
+echo "FASTQC version is $OUTPUT" >> config.log
+OUTPUT=$(fastx_trimmer -h | grep "Part of FASTX Toolkit" 2>&1)
+echo "FASTX version is $OUTPUT" >> config.log 
+OUTPUT=$(usearch61 | grep "usearch"  2>&1)
+echo "usearch61 version is $OUTPUT" >> config.log
+OUTPUT=$(usearch | grep "usearch"  2>&1)
+echo "usearch version is $OUTPUT" >> config.log
+echo -e "\n\nThe QIIME configuration is below (output of command \"print_qiime_config.py\")" >> config.log
+print_qiime_config.py >> config.log
+echo -e "-----------------------------------\n" >> config.log
+
 
 echo -e "A script file named \"script.sh\" is generated"
  

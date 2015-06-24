@@ -101,4 +101,11 @@ do
   rm -f $file
 done
 
+#Store all information in log file "QC.log"
+echo "Time: `date`" >> QC.log
+echo -e "This QC steps code was run as :" >> QC.log
+echo -e "quality_filter_single.sh $RAW_DATA $FWD_TRIM $QC_PERCENT $QC_SCORE" >> QC.log
+echo -e "The fastq to fasta conversion was done as \"fastq_to_fasta -r -i\"" >> QC.log
+echo -e "-----------------------------------\n" >> QC.log
+
 echo -e "\nQC filtering program completed \n"

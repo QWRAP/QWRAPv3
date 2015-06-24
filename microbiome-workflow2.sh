@@ -49,7 +49,8 @@ echo -e "">>script_adv.sh
 echo '#----------- OTU table statistics-------------------------------'>>script_adv.sh
 echo -e 'echo "Time: `date`"' >>script_adv.sh
 echo -e 'echo "Running: OTU table statistics"'>>script_adv.sh
-echo 'print_biom_table_summary.py -i otu_table_fil.biom > otu_table_fil.stats.txt'>>script_adv.sh
+#echo 'print_biom_table_summary.py -i otu_table_fil.biom > otu_table_fil.stats.txt'>>script_adv.sh
+echo 'biom summarize-table -i otu_table_fil.biom -o otu_table_fil.stats.txt'>>script_adv.sh
 echo -e "">>script_adv.sh
 
 
@@ -64,7 +65,8 @@ echo -e "">>script_adv.sh
 echo '#------------------ Convert BIOM file to TXT file----------------'>>script_adv.sh
 echo -e 'echo "Time: `date`"' >>script_adv.sh
 echo -e 'echo "Running: Converting BIOM file to TXT file"'>>script_adv.sh
-echo 'convert_biom.py -i otu_table_fil.biom -o otu_table_fil.txt -b --header_key taxonomy --output_metadata_id "ConsensusLineage"'>>script_adv.sh
+#echo 'convert_biom.py -i otu_table_fil.biom -o otu_table_fil.txt -b --header_key taxonomy --output_metadata_id "ConsensusLineage"'>>script_adv.sh
+echo 'biom convert -i otu_table_fil.biom -o otu_table_fil.txt -b --header-key taxonomy --output-metadata-id "ConsensusLineage"'>>script_adv.sh
 echo -e "">>script_adv.sh
 
 echo '#------------------ Create Normalized OTU table -----------------'>>script_adv.sh
@@ -107,6 +109,10 @@ echo -e 'echo "Time: `date`"' >>script_adv.sh
 echo -e 'echo "Running: Calculating Beta diversity and plots"'>>script_adv.sh
 echo 'echo "beta_diversity:metrics  bray_curtis,unweighted_unifrac,weighted_unifrac" > beta_params.txt'>>script_adv.sh
 echo -e "beta_diversity_through_plots.py -i otu_table_fil.biom -m mapping.txt -p beta_params.txt -o beta_div -v -t phylogeny.tre">>script_adv.sh
+echo -e "make_2d_plots.py -i beta_div/bray_curtis_pc.txt -m mapping.txt -o beta_div/bray_curtis_2d_continuous/">>script_adv.sh
+echo -e "make_2d_plots.py -i beta_div/unweighted_unifrac_pc.txt -m mapping.txt -o beta_div/unweighted_unifrac_2d_continuous/">>script_adv.sh
+echo -e "make_2d_plots.py -i beta_div/weighted_unifrac_pc.txt -m mapping.txt -o beta_div/weighted_unifrac_2d_continuous/">>script_adv.sh
+
 echo '# calculate beta div values for given three matrices : bray_curtis,unweighted_unifrac,weighted_unifrac'>>script_adv.sh
 echo -e "beta_diversity.py -i otu_table_fil.biom -m bray_curtis,unweighted_unifrac,weighted_unifrac -o beta_div_matrices -t phylogeny.tre">>script_adv.sh
 
