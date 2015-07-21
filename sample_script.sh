@@ -1,7 +1,7 @@
 #----------------CHIMERA FILTERING USING USEARCH---------------
 echo "Time: `date`"
 echo "Running: Chimera Filtering"
-identify_chimeric_seqs.py -i seqs.fna -m usearch61 -o usearch_checked_chimeras/ -r /share/apps/ngs-ccts/QIIME-files-1.7/QIIME-1.7/gg_13_8_otus/rep_set/97_otus.fasta
+identify_chimeric_seqs.py -i seqs.fna -m usearch61 -o usearch_checked_chimeras/ -r /share/apps/ngs-ccts/QIIME/QIIME-files-1.8/QIIME-1.8/gg_otus-13_8-release/rep_set/97_otus.fasta
 filter_fasta.py -f seqs.fna -o seqs_chimeras_filtered.fna -s usearch_checked_chimeras/chimeras.txt -n
 mv seqs.fna seqs.fna.chim
 mv seqs_chimeras_filtered.fna seqs.fna
@@ -33,7 +33,7 @@ sort_otu_table.py -i otu_table_unsorted_org.biom -o otu_table_org.biom -l sample
 #----------- OTU table statistics ORG-------------------------------
 echo "Time: `date`"
 echo "Running: OTU table statistics"
-print_biom_table_summary.py -i otu_table_org.biom > otu_table_org.stats.txt
+biom summarize-table -i otu_table_org.biom -o otu_table_org.stats.txt
 
 #------- Summarizing taxa information(ORG)-------
 echo "Time: `date`"
@@ -44,7 +44,7 @@ plot_taxa_summary.py -i taxa_summary_org/otu_table_org_L2.txt,taxa_summary_org/o
 #------------------ Convert BIOM file to TXT file----------------
 echo "Time: `date`"
 echo "Running: Converting BIOM file to TXT file"
-convert_biom.py -i otu_table_org.biom -o otu_table_org.txt -b --header_key taxonomy --output_metadata_id "ConsensusLineage"
+biom convert -i otu_table_org.biom -o otu_table_org.txt -b --header-key taxonomy --output-metadata-id "ConsensusLineage"
 
 #------------------ Create Normalized OTU table -----------------
 echo "Time: `date`"

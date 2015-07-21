@@ -2,7 +2,7 @@
 #---------------------Rarifying OTU table-------------------
 echo "Time: `date`"
 echo "Running: Rarefaction of OTU tables"
-single_rarefaction.py -i otu_table_org.biom -o otu_table_even.biom -d 23164
+single_rarefaction.py -i otu_table_org.biom -o otu_table_even.biom -d 1834
 
 
 #--------------------- Filter OTUs @ 0.0005% --------------------
@@ -20,7 +20,7 @@ plot_taxa_summary.py -i taxa_summary_fil/otu_table_fil_L2.txt,taxa_summary_fil/o
 #----------- OTU table statistics-------------------------------
 echo "Time: `date`"
 echo "Running: OTU table statistics"
-print_biom_table_summary.py -i otu_table_fil.biom > otu_table_fil.stats.txt
+biom summarize-table -i otu_table_fil.biom -o otu_table_fil.stats.txt
 
 #----------------------- Create OTU Heatmap ---------------------
 make_otu_heatmap_html.py -i otu_table_fil.biom -o OTU_fil_Heatmap/
@@ -31,7 +31,7 @@ make_otu_network.py -m mapping.txt -i otu_table_fil.biom -o OTU_fil_Network
 #------------------ Convert BIOM file to TXT file----------------
 echo "Time: `date`"
 echo "Running: Converting BIOM file to TXT file"
-convert_biom.py -i otu_table_fil.biom -o otu_table_fil.txt -b --header_key taxonomy --output_metadata_id "ConsensusLineage"
+biom convert -i otu_table_fil.biom -o otu_table_fil.txt -b --header-key taxonomy --output-metadata-id "ConsensusLineage"
 
 #------------------ Create Normalized OTU table -----------------
 echo "Time: `date`"
@@ -70,6 +70,9 @@ echo "Time: `date`"
 echo "Running: Calculating Beta diversity and plots"
 echo "beta_diversity:metrics  bray_curtis,unweighted_unifrac,weighted_unifrac" > beta_params.txt
 beta_diversity_through_plots.py -i otu_table_fil.biom -m mapping.txt -p beta_params.txt -o beta_div -v -t phylogeny.tre
+make_2d_plots.py -i beta_div/bray_curtis_pc.txt -m mapping.txt -o beta_div/bray_curtis_2d_continuous/
+make_2d_plots.py -i beta_div/unweighted_unifrac_pc.txt -m mapping.txt -o beta_div/unweighted_unifrac_2d_continuous/
+make_2d_plots.py -i beta_div/weighted_unifrac_pc.txt -m mapping.txt -o beta_div/weighted_unifrac_2d_continuous/
 # calculate beta div values for given three matrices : bray_curtis,unweighted_unifrac,weighted_unifrac
 beta_diversity.py -i otu_table_fil.biom -m bray_curtis,unweighted_unifrac,weighted_unifrac -o beta_div_matrices -t phylogeny.tre
 # Draw emperor plots
